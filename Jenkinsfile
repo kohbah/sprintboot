@@ -26,7 +26,14 @@ pipeline {
                 }
             }
         }
-                  
+         
+       stage ('ecr login') {
+            steps {
+                script {
+                    sh "/usr/local/bin/aws aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 877510168756.dkr.ecr.us-east-1.amazonaws.com"
+                }
+            }
+        }  
 
         stage ('publish ') {
             steps {
